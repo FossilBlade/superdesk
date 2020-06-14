@@ -7,10 +7,12 @@
 module.exports = function(grunt) {
     return {
         apps: [
-            'superdesk-publisher'
+            'superdesk-publisher',
+            'superdesk-planning'
         ],
         importApps: [
-            'superdesk-publisher'
+            'superdesk-publisher',
+            'superdesk-planning'
         ],
         defaultRoute: '/workspace/personal',
         validatorMediaMetadata: {
@@ -38,13 +40,13 @@ module.exports = function(grunt) {
         },
 
         publisher: {
-            protocol: 'https',
-            tenant: process.env.PUBLISHER_API_SUBDOMAIN || '',
-            domain: process.env.PUBLISHER_API_DOMAIN || 'localhost',
+            protocol: 'http',
+            tenant: '',
+            domain: 'ec2-13-126-66-212.ap-south-1.compute.amazonaws.com',
             base: 'api/v2',
-            wsDomain: process.env.PUBLISHER_WS_DOMAIN || process.env.PUBLISHER_API_DOMAIN,
-            wsPath: process.env.PUBLISHER_WS_PATH || '',
-            wsPort: process.env.PUBLISHER_WS_PORT || '8080'
+            wsDomain: 'ec2-13-126-66-212.ap-south-1.compute.amazonaws.com',
+            wsPath: '/ws',
+            wsPort: '8080'
         },
 
         langOverride: {
@@ -60,9 +62,12 @@ module.exports = function(grunt) {
             editor3: true,
             editorHighlights: true,
             nestedItemsInOutputStage: true,
+            planning: true,
         },
         workspace: {
-            analytics: true
+            analytics: true,
+            planning: true,
+            assignments: true
         }
     };
 };
